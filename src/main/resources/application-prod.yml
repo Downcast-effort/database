@@ -3,5 +3,5 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/test?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
     username: root
-    password: langya1315
+    password: your password
     driver-class-name: com.mysql.jdbc.Driver
