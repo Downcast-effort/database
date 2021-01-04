@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dandelion.database.service.mybatis.mapper.xmlMapper.XmlDaoMapper">
+
+    <sql id="fields">
+        id,name,password,address,age,sex
+    </sql>
+
+    <insert id="insertSomeOne">
+        INSERT INTO test(id,name,address,age,sex)
+        VALUES
+        <foreach collection="list" item="testDao" index="index" separator=",">
+            (#{testDao.id},#{testDao.name},#{testDao.address},#{testDao.age}#{testDao.sex})
+        </foreach>
+    </insert>
+
+    <select id="selectOneAgeLarger" resultType="com.dandelion.database.pojo.testDao">
+        SELECT *
+        FROM test WHERE age > #{ageDif}
+    </select>
+
+    <update id="updateAddressByName" parameterType="string">
+        UPDATE test
+        SET address=#{address}
+        WHERE
+            <if test="name != null">
+                , name = #{name}
+            </if>
+    </update>
+
+    <select id="displayTestDaoByPage" resultType="com.dandelion.database.pojo.testDao">
+        SELECT *
+        FROM test
+        LIMIT #{pageIndex},#{pageSize}
+    </select>
+
+
+</mapper>
